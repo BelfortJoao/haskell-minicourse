@@ -20,7 +20,7 @@ atualizarCelula m (i, j) v = (v && (vivos == 2 || vivos == 3)) || vivos == 3
     where
         deslocamentos = [(-1, -1), (-1, 0), (-1, 1),
                          (0, -1),           (0, 1),
-                         (1, 1),   (1, 0),  (1, 1)]
+                         (1, -1),   (1, 0),  (1, 1)]
         vizinhos = map (\(di,dj) -> M.safeGet (i+di) (j+dj) m) deslocamentos
         vizinhos' = map (fromMaybe False) vizinhos
         vivos = length (filter (\x -> x) vizinhos')
@@ -70,4 +70,4 @@ main = do
             let tamanho = ((w+1) *cellSize, (h+1)*cellSize)
             let evolve _ _ = atualizar
             simulate 
-                (InWindow "Jogo da Vida" tamanho (0,0)) black 1 m toPicture evolve
+                (InWindow "Jogo da Vida" tamanho (0,0)) black 60 m toPicture evolve
